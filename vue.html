@@ -10,25 +10,30 @@
   <script src="js/views/summaryView.js" type="text/jsx"></script>
   <script src="js/views/sidebarView.js" type="text/jsx"></script>
   <script src="js/views/searchView.js" type="text/jsx"></script>
+  <script src="js/app.js" type="text/jsx"></script>
 </head>
 
 <body>
   <div id="app"></div>
 </body>
 
-<!-- <script type="text/jsx">
-  const persons=4;
-  Vue.render(
-  <div>Summary for
-        <span title="nr. guests">{persons}</span> guests:
-  </div>
-  ,  document.getElementById("app")
-  );
-</script> -->
-
 <script type="text/jsx">
+  // a Vue state-ful component, defined as Object, not Function
+  const VueSidebarLocalState = {
+    data () { return {number:2}; }, 
+    render () {  
+      return (
+        <SidebarView
+          guests={this.number}
+          setGuests={(guests) => this.number = guests}
+        />
+      );
+    }
+  };
+
   Vue.render(
     <div>
+      <VueSidebarLocalState />
       <SidebarView
         guests={2}
         setGuests={(guests) => console.log(`the user wants a dinner for ${guests} guests`)}
