@@ -1,0 +1,38 @@
+<html>
+
+<head>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <script>
+    // Babel generates calls to React.createElement by default, so we redefine that:
+    const React = { createElement: Vue.h };
+  </script>
+  <script src="js/views/summaryView.js" type="text/jsx"></script>
+  <script src="js/views/sidebarView.js" type="text/jsx"></script>
+  <script src="js/views/searchView.js" type="text/jsx"></script>
+</head>
+
+<body>
+  <div id="app"></div>
+</body>
+
+<!-- <script type="text/jsx">
+  const persons=4;
+  Vue.render(
+  <div>Summary for
+        <span title="nr. guests">{persons}</span> guests:
+  </div>
+  ,  document.getElementById("app")
+  );
+</script> -->
+
+<script type="text/jsx">
+  Vue.render(
+    <div>
+      <SidebarView guests={2} />
+      <SummaryView persons={5} />
+      <SearchFormView options={["starter", "main course", "dessert"]} />
+    </div>, document.getElementById("app"));
+</script>
+
+</html>
