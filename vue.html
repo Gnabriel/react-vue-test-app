@@ -10,7 +10,10 @@
   <script src="js/views/summaryView.js" type="text/jsx"></script>
   <script src="js/views/sidebarView.js" type="text/jsx"></script>
   <script src="js/views/searchView.js" type="text/jsx"></script>
+  <script src="vuejs/sidebarPresenter.js" type="text/jsx"></script>
+  <script src="vuejs/summaryPresenter.js" type="text/jsx"></script>
   <script src="js/app.js" type="text/jsx"></script>
+  <script src="js/DinnerModel.js"></script>
 </head>
 
 <body>
@@ -18,34 +21,15 @@
 </body>
 
 <script type="text/jsx">
-  // a Vue state-ful component, defined as Object, not Function
-  const VueSidebarLocalState = {
-    data () { return {number:2}; }, 
-    render () {  
-      return (
-        <SidebarView
-          guests={this.number}
-          setGuests={(guests) => this.number = guests}
-        />
-      );
-    }
+  const TopLevelModel= {  
+    data(){ return {model: new DinnerModel()}; }, 
+    render(){ return <App model={this.model} />; }
   };
 
   Vue.render(
-    <div>
-      <VueSidebarLocalState />
-      <SidebarView
-        guests={2}
-        setGuests={(guests) => console.log(`the user wants a dinner for ${guests} guests`)}
-      />
-      <SummaryView persons={5} />
-      <SearchFormView 
-        options={["starter", "main course", "dessert"]}
-        onSearch={()=>console.log("User wants to search!")}
-        onText={txt=>console.log("User typed: ", txt)}
-        onDishType={dishType=>console.log("User chose dish type: ", dishType)}
-      />
-    </div>, document.getElementById("app"));
+    <TopLevelModel />
+    , document.getElementById("app")
+  )
 </script>
 
 </html>

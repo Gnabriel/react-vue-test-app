@@ -1,10 +1,10 @@
 const SidebarPresenter = ({ model }) => {
   return (
     <SidebarView
-      guests={"" /* TODO */}
-      setGuests={
-        "" /* TODO arrow function that calls the props.model  setNumberOfGuests() */
-      }
+      guests={model.numberOfGuests}
+      setGuests={(guests) => {
+        model.setNumberOfGuests(guests);
+      }}
     />
   );
 };
