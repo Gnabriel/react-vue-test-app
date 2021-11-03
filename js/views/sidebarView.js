@@ -1,9 +1,11 @@
-const SidebarView = ({ guests }) => {
+const SidebarView = ({ guests, setGuests }) => {
   return (
     <div>
-      <button disabled={guests <= 1}>-</button>
+      <button onClick={() => setGuests(--guests)} disabled={guests <= 1}>
+        -
+      </button>
       <span>{guests}</span>
-      <button>+</button>
+      <button onClick={() => setGuests(++guests)}>+</button>
     </div>
   );
 };

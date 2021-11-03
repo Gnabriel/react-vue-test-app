@@ -26,9 +26,17 @@
 <script type="text/jsx">
   ReactDOM.render(
     <div>
-      <SidebarView guests={2} />
+      <SidebarView
+        guests={2}
+        setGuests={(guests) => console.log(`the user wants a dinner for ${guests} guests`)}
+      />
       <SummaryView persons={5} />
-      <SearchFormView options={["starter", "main course", "dessert"]} />
+      <SearchFormView 
+        options={["starter", "main course", "dessert"]}
+        onSearch={() => console.log("User wants to search!")}
+        onText={txt => console.log("User typed: ", txt)}
+        onDishType={dishType => console.log("User chose dish type: ", dishType)}
+      />
     </div>, document.getElementById("app")
     );
 </script>
