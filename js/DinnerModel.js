@@ -5,7 +5,8 @@ class DinnerModel {
   setNumberOfGuests(x) {
     if (x <= 0 || !Number.isInteger(x)) {
       throw Error("Number of guests has to be a positive non-zero Integer.");
+    } else {
+      this.numberOfGuests = x;
     }
-    this.numberOfGuests = x;
   }
 }
