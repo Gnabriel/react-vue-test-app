@@ -13,7 +13,7 @@
   <div id="app"></div>
 </body>
 
-<script type="text/jsx">
+<!-- <script type="text/jsx">
   ReactDOM.render(
     <div>
       <SidebarView
@@ -29,6 +29,29 @@
       />
     </div>, document.getElementById("app")
     );
+</script> -->
+
+<script type="text/jsx">
+  const RenderTest = () => {
+    console.log("React sub-component render test");
+    return false;
+  };
+
+  const ReactSidebarLocalState = () => {
+    const [num, setNumber] = React.useState(2);
+    return (
+      <div>
+        <SidebarView guests={num} setGuests={x => setNumber(x)} />
+        <SummaryView persons={num} />
+        <RenderTest />
+      </div>
+    );
+  };
+
+  ReactDOM.render(
+    <ReactSidebarLocalState />,
+    document.getElementById("app")
+  );
 </script>
 
 
